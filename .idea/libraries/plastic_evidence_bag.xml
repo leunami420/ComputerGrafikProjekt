@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="plastic_evidence_bag">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/thrrejs/assets/cow/plastic_evidence_bag.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
