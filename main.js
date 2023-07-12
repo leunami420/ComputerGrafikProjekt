@@ -1,97 +1,79 @@
 import {
-  BoxBufferGeometry,
   Color,
-  Mesh,
-  MeshBasicMaterial,
   PerspectiveCamera,
   Scene,
   WebGLRenderer,
-  Vector2,
   AmbientLight,
 } from 'three';
-import { setupModel } from './setupModel.js';
 
-import { GLTFLoader } from './vendor/three/examples/jsm/loaders/GLTFLoader.js';
-
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader';
 
 async function init() {
   const container = document.querySelector('#scene-container');
   const scene = new Scene();
-  scene.background = new Color('white');
+  scene.background = new Color('black');
 
-  //Add light
-  var light = new AmbientLight(0xffffff);
+  // Add light
+  const light = new AmbientLight(0xffffff);
   scene.add(light);
 
-  // camera
-  const camera = new PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.01, 2000);
-  camera.position.set(0, 2, 300);
+  // Camera
+  const camera = new PerspectiveCamera(45, container.clientWidth / container.clientHeight, 100, 200000);
+  camera.position.set(0, 2, 100);
 
-  // GLTFLoader
-  async function loadModel() {
-    const loader = new GLTFLoader();
-    const gltf = await loader.loadAsync('/assets/cow/scene.gltf');
-    const modelData = gltf.scene;
-
-    const model = setupModel(modelData, gltf);
-
-    return { model };
-  }
-
-  const { model } = await loadModel();
-  scene.add(model);
-
-
-  // render stuff
+  // Render stuff
   const renderer = new WebGLRenderer();
   renderer.setSize(container.clientWidth, container.clientHeight);
   renderer.setPixelRatio(window.devicePixelRatio);
   container.appendChild(renderer.domElement);
 
-  // Track mouse movement
-  const mouse = new Vector2();
-  const previousMouse = new Vector2();
-  let isDragging = false;
+  // Orbit Controls
+  const controls = new OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true;
+  controls.target.set(0, 1, 0);
 
-  function handleMouseDown(event) {
-    event.preventDefault();
-    isDragging = true;
-    previousMouse.set(event.clientX, event.clientY);
+  // FBX Loader
+  const fbxLoader = new FBXLoader();
+  fbxLoader.load(
+    '/assets/cow/Bushalte.fbx',
+    (object) => {
+
+      scene.add(object);
+      fixTransparentTextures(object);
+
+    },
+    (xhr) => {
+      console.log((xhr.loaded / xhr.total) * 100 + '% loaded');
+    },
+    (error) => {
+      console.log(error);
+    }
+  );
+
+  // Function to fix transparent textures
+  function fixTransparentTextures(object) {
+    object.traverse((child) => {
+      if (child.isMesh && child.material && child.material.transparent) {
+        child.material.depthWrite = false;
+      }
+    });
   }
 
-  function handleMouseMove(event) {
-    event.preventDefault();
-    if (!isDragging) return;
-
-    mouse.set(event.clientX, event.clientY);
-
-    const delta = new Vector2().subVectors(mouse, previousMouse);
-    const rotationSpeed = 0.005;
-
-    // Update object rotation
-    model.rotation.y += delta.x * rotationSpeed;
-    model.rotation.x += delta.y * rotationSpeed;
-
-    previousMouse.set(mouse.x, mouse.y);
-    render();
-  }
-
-  function handleMouseUp(event) {
-    event.preventDefault();
-    isDragging = false;
-  }
-
-  container.addEventListener('mousedown', handleMouseDown);
-  container.addEventListener('mousemove', handleMouseMove);
-  container.addEventListener('mouseup', handleMouseUp);
-
-  //render function
+  // Render function
   function render() {
     renderer.render(scene, camera);
   }
 
-  //call render function
-  render();
+  // Animation loop
+  function animate() {
+    requestAnimationFrame(animate);
+    controls.update(); // Update controls for camera rotation
+    render();
+  }
+
+  // Call animate function to start the animation loop
+  animate();
 }
 
 init();
