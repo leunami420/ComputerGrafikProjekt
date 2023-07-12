@@ -101,6 +101,23 @@ async function init() {
 
 
 
+  const flickerDuration = 23000; // 23 seconds
+  const startTime = Date.now();
+
+  function updateFlickeringIntensity() {
+    const elapsed = Date.now() - startTime;
+    const flickerIntensity = Math.random() * 0.9 + 0.9;
+    dl.intensity = flickerIntensity;
+    pl1.intensity = flickerIntensity;
+    pl2.intensity = flickerIntensity;
+
+    if (elapsed >= flickerDuration) {
+      dl.intensity = 1; 
+      pl1.intensity = 1; 
+      pl2.intensity = 1; 
+    }
+  }
+
   // Render function
   function render() {
     renderer.render(scene, camera);
@@ -110,17 +127,13 @@ async function init() {
   function animate() {
     requestAnimationFrame(animate);
     controls.update(); // Update controls for camera rotation
-
-    const flickerIntensity =  Math.random() * 0.8 + 0.8; 
-    dl.intensity = flickerIntensity; 
-    pl1.intensity = flickerIntensity; 
-    pl2.intensity = flickerIntensity;
-
+    updateFlickeringIntensity();
     render();
   }
 
   // Call animate function to start the animation loop
   animate();
+  
 }
 
 init();
