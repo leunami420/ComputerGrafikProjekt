@@ -110,6 +110,12 @@ async function init() {
   function animate() {
     requestAnimationFrame(animate);
     controls.update(); // Update controls for camera rotation
+
+    const flickerIntensity =  Math.random() * 0.8 + 0.8; 
+    dl.intensity = flickerIntensity; 
+    pl1.intensity = flickerIntensity; 
+    pl2.intensity = flickerIntensity;
+
     render();
   }
 
