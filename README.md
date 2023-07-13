@@ -39,27 +39,27 @@ Die UV Texturen wurden in Microsoft Office Programmen designed
 
 Das three.js Projekt benutzt mehrere Libraries um die Bushaltestelle anzuzeigen:
 
-##OrbitControls
+## OrbitControls
 
 ermöglicht das navigieren durch das 3d modell mithilfe von Mouse Controls
 
-##FBXLoader
+## FBXLoader
 
 lädt das 3d Modell
 
-##SpotLight
+## SpotLight
 
 erzeugt die Lampen
 
-##SpotLightHelper
+## SpotLightHelper
 
 hilft bei der richtigen Ausrichtung der Lichter
 
-##Animation
+## Animation
 
 Das Flackern der Lichter ist animiert 
 
-###Challenges
+### Challenges
 
 Besonders das übertragen und einstellen von Texturen war eine große Herausforderung. Auch unser erster Plan, die Werbetafel 
 mit einer RectAreaLight Hintergrundbeleuchtung zu versehen hat sich als unnötig schwierig herausgestellt. 
