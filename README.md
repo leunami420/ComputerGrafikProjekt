@@ -1,65 +1,48 @@
-# ComputerGrafikProjekt
-# Berliner Bushaltestelle bei Nacht
-### von Danylo Vovchok und Imanuel Leiserowitz
-
+# Computer Graphics Project: Berlin Bus Stop at Night
+## This project, created by Danylo Vovchok and Imanuel Leiserowitz, showcases a 3D scene of a Berlin bus stop at night using the Three.js library. The scene features a detailed 3D model of the bus stop, along with various lighting effects and animations.
 
 ## Setup Project
+To set up the project, follow the instructions below:
 
 Option 1: Install with NPM and a build tool
-Development
-Installing from the npm package registry and using a build tool is the recommended approach for most users — the more dependencies your project needs, the more likely you are to run into problems that the static hosting cannot easily resolve. With a build tool, importing local JavaScript files and npm packages should work out of the box, without import maps.
 
-Install Node.js. We'll need it to load manage dependencies and to run our build tool.
-Install three.js and a build tool, Vite, using a terminal in your project folder. Vite will be used during development, but it isn't part of the final webpage. If you prefer to use another build tool, that's fine — we support modern build tools that can import ES Modules.
+Install Node.js, which is required to manage dependencies and run the build tool.
+Open a terminal in your project folder and install three.js and the build tool, Vite, by running the following commands:
+bash
+npm install --save three
+npm install --save-dev vite
+After the installation, run the following command to start the development server:
+bash
+npx vite
+If everything went well, you should see a URL like http://localhost:5173 in your terminal. Open that URL in your browser to view the web application.
+Project Dependencies
+
+
+This project relies on the following libraries and tools:
 
 ## three.js
-npm install --save three
-
-## vite
-npm install --save-dev vite
-Installation added node_modules/ and package.json to my project. What are they?
-From your terminal, run:
-npx vite
-What is npx?
-npx is installed with Node.js, and runs command line programs like Vite so that you don't have to search for the right file in node_modules/ yourself. If you prefer, you can put Vite's common commands into the package.json:scripts list, and use npm run dev instead.
-
-If everything went well, you'll see a URL like http://localhost:5173 appear in your terminal, and can open that URL to see your web application.
-
-
-
-![Berliner Bushaltestelle bei Nacht](https://imgur.com/a/lDGNoDM)
-
-Das 3d Modell der Bushaltestelle und die Assets wurden in Maya erstellt
-
-![Bushaltestelle in Maya](https://imgur.com/ghMCQCQ)
-
-Die UV Texturen wurden in Microsoft Office Programmen designed
-
-![Texturen](https://imgur.com/RBiPxMN)
-
-Das three.js Projekt benutzt mehrere Libraries um die Bushaltestelle anzuzeigen:
-
+Three.js is a JavaScript library used for creating and rendering 3D scenes in the browser. It provides various components and utilities for working with 3D graphics.
 ## OrbitControls
-
-ermöglicht das navigieren durch das 3d modell mithilfe von Mouse Controls
-
+OrbitControls is a utility in Three.js that enables navigation around a 3D model using mouse controls. It allows users to rotate, pan, and zoom the camera in the scene.
 ## FBXLoader
-
-lädt das 3d Modell
-
+FBXLoader is a loader module in Three.js specifically designed for loading FBX files. It is used in this project to load the 3D model of the bus stop.
 ## SpotLight
-
-erzeugt die Lampen
-
+SpotLight is a type of light source in Three.js that emits light in a specific direction within a cone-shaped area. Spotlights are used in the scene to create realistic lighting effects.
 ## SpotLightHelper
-
-hilft bei der richtigen Ausrichtung der Lichter
-
+SpotLightHelper is a helper class in Three.js that assists in visualizing and adjusting the position and direction of spotlights. It is used in this project to ensure the correct alignment of the spotlights.
 ## Animation
+The project includes an animation where the lights flicker realistically. The flickering effect is achieved by animating the intensity of the spotlights using random values.
 
-Das Flackern der Lichter ist animiert 
+## Challenges
+Throughout the development of this project, we encountered several challenges:
 
-### Challenges
+-Transferring and setting up the textures for the 3D model proved to be a significant challenge.
+-Initially, we planned to add backlighting to the advertising board using RectAreaLight, but this approach turned out to be more complex than anticipated.
+Screenshots
+Berliner Bushaltestelle bei Nacht
 
-Besonders das übertragen und einstellen von Texturen war eine große Herausforderung. Auch unser erster Plan, die Werbetafel 
-mit einer RectAreaLight Hintergrundbeleuchtung zu versehen hat sich als unnötig schwierig herausgestellt. 
+### The 3D model of the bus stop and assets were created in Maya.
+
+### The UV textures were designed using Microsoft Office programs.
+
+### Feel free to explore the project and experience the immersive 3D scene of a Berlin bus stop at night. Enjoy!
