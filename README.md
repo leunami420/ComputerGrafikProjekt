@@ -27,7 +27,7 @@ If everything went well, you'll see a URL like http://localhost:5173 appear in y
 
 
 
-![Berliner Bushaltestelle bei Nacht](https://imgur.com/XZUISe0)
+![Berliner Bushaltestelle bei Nacht](https://imgur.com/a/lDGNoDM)
 
 Das 3d Modell der Bushaltestelle und die Assets wurden in Maya erstellt
 
