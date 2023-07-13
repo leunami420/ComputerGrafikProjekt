@@ -10,7 +10,7 @@ import {
   SpotLight,
   SpotLightHelper,
   RectAreaLight,
-  
+
 } from 'three';
 
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
@@ -21,7 +21,8 @@ import { RectAreaLightUniformsLib } from "three/examples/jsm/lights/RectAreaLigh
 async function init() {
   const container = document.querySelector('#scene-container');
   const scene = new Scene();
-  scene.background = new Color('blue');
+  scene.background = new Color(0x000033);
+
 
 
   // Add light
@@ -111,11 +112,6 @@ async function init() {
     pl1.intensity = flickerIntensity;
     pl2.intensity = flickerIntensity;
 
-    if (elapsed >= flickerDuration) {
-      dl.intensity = 1; 
-      pl1.intensity = 1; 
-      pl2.intensity = 1; 
-    }
   }
 
   // Render function
@@ -133,7 +129,7 @@ async function init() {
 
   // Call animate function to start the animation loop
   animate();
-  
+
 }
 
 init();
