@@ -3,7 +3,7 @@
 ### von Danylo Vovchok und Imanuel Leiserowitz
 
 
-##Setup Project
+## Setup Project
 
 Option 1: Install with NPM and a build tool
 Development
